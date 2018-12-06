@@ -8,3 +8,9 @@
 	1.7 Перейти к этапу 1.4
 
 2. Предоставить внутрипрограммный интерфейс для доступа и работы с получеными данными на шаге 1, выводить эти данные в консоль.
+
+
+
+Links:
+TCP/UDP protocl:	https://www.techrepublic.com/article/exploring-the-anatomy-of-a-data-packet/
+ModBus reference:	http://www.modbus.org/docs/Modbus_Messaging_Implementation_Guide_V1_0b.pdf
