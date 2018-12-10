@@ -1,0 +1,29 @@
+{
+  "Nodes" : {
+    "modbus_client_1" : { 
+    "id": 1,
+    "code":3,
+    "shift": 0,
+    "registers":6,
+    "API": {
+      "0": "float",
+      "2": "float",
+      "4": "word",
+      "5": "word"
+    }
+  },
+    "modbus_client_2" : { 
+    "id": 1,
+    "code":3,
+    "shift": 0,
+    "registers":6,
+    "API": {
+      "0": { "type": "float", "name": "var1", "byteorder": "01325476"},
+      "2": { "type": "float", "name": "var2", "byteorder": "01234567"},
+      "4": { "type": "uint_16", "name": "var3", "byteorder": "01325476"},
+      "5": { "type": "uint_16", "name": "var4", "byteorder": "01325476"}
+    }
+  }
+  }
+
+}
