@@ -1,28 +1,38 @@
-project("OPC_SERVER")
 if ( UNIX )
     message("Using sistem is UNIX!")
     cmake_minimum_required(VERSION 3.10.0)
 elseif(WIN32)
-    cmake_minimum_required(VERSION 3.13.1)
+    message("Using sistem is WIN32!")
+    cmake_minimum_required(VERSION 3.13)
 endif()
 
-message(" ")
-message("Lets GO Rok&Roll!")
-message(" ")
+project( OPC_SERVER )
 
-set(HEADERS 
-    ${HEADERS} 
-    ${CMAKE_CURRENT_SOURCE_DIR}/app.h)
+include_directories(
+	${CMAKE_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/Src
+)
 
-set(SOURCES 
-    ${SOURCES} 
-    ${CMAKE_CURRENT_SOURCE_DIR}/app.cpp)
+#add_subdirectory( Lib/Json )
 
-link_directories( ${CMAKE_CURRENT_SOURCE_DIR})
-add_subdirectory(libs/json)
-find_package(nlohmann_json REQUIRED)
-add_library(foo ...)
-target_link_libraries(foo PRIVATE nlohmann_json::nlohmann_json)
+#add_library( Json SHARED ${CMAKE_SOURCE_DIR}/Lib/Json/json.hpp )
 
+set( Sources ${CMAKE_CURRENT_SOURCE_DIR}/Src )
+set( apps_SRCS  
+    ${Sources}/app.h
+    ${Sources}/app.cpp
+    )
 
-add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/main ${SOURCES} ${HEADERS})
+if ( UNIX )
+    add_executable( ${PROJECT_NAME} 
+                    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp 
+                    ${apps_SRCS} 
+    )
+    target_link_libraries(${PROJECT_NAME} ${Json})
+elseif(WIN32)
+    add_executable( ${PROJECT_NAME}
+                    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp 
+                    ${apps_SRCS} 
+                    )
+    target_link_libraries(${PROJECT_NAME} ${Json})
+endif()

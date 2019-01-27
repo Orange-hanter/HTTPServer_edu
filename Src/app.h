@@ -7,4 +7,7 @@ public:
 
     bool init();
     void start();
+
+private:
+    
 };
