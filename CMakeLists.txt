@@ -3,36 +3,32 @@ if ( UNIX )
     cmake_minimum_required(VERSION 3.10.0)
 elseif(WIN32)
     message("Using sistem is WIN32!")
-    cmake_minimum_required(VERSION 3.13)
+    cmake_minimum_required(VERSION 3.12)
 endif()
 
 project( OPC_SERVER )
 
 include_directories(
-	${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/Src
+    ${CMAKE_SOURCE_DIR}/Lib/Json
 )
 
-#add_subdirectory( Lib/Json )
+#add_subdirectory( ${CMAKE_SOURCE_DIR}/Lib/modbuspp )
 
-#add_library( Json SHARED ${CMAKE_SOURCE_DIR}/Lib/Json/json.hpp )
+set( Sources ${CMAKE_SOURCE_DIR}/Src )
 
-set( Sources ${CMAKE_CURRENT_SOURCE_DIR}/Src )
-set( apps_SRCS  
+set( app_INCLUDES
     ${Sources}/app.h
-    ${Sources}/app.cpp
-    )
+)
 
-if ( UNIX )
-    add_executable( ${PROJECT_NAME} 
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp 
-                    ${apps_SRCS} 
-    )
-    target_link_libraries(${PROJECT_NAME} ${Json})
-elseif(WIN32)
-    add_executable( ${PROJECT_NAME}
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp 
-                    ${apps_SRCS} 
-                    )
-    target_link_libraries(${PROJECT_NAME} ${Json})
-endif()
+set( app_SOURCES
+    ${Sources}/app.cpp
+)
+
+add_executable( ${PROJECT_NAME}
+                ${Sources}/main.cpp 
+                ${app_INCLUDES}
+                ${app_SOURCES}
+              )
+
+#target_link_libraries( ${PROJECT_NAME} modbuspp )

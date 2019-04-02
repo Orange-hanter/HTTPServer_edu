@@ -1,9 +1,4 @@
-CMakeLists.txt
-CMakeCache.txt
-CMakeFiles/*
-cmake_install.cmake
-Makefile
-OPC_SERVER
-build/*
-Sln/*
+.vs/*
 .vscode/*
+build/*
+CppProperties.json
